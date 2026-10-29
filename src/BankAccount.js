@@ -15,12 +15,14 @@ class BankAccount {
   }
 
   withdraw(amount) {
-    // BUG: Does not check for negative amounts!
-    if (amount > this.#balance) {
-      throw new Error("Insufficient funds!");
-    }
-    this.#balance -= amount;
+  if (amount <= 0) {
+    throw new Error("Withdrawal amount must be positive!");
   }
+  if (amount > this.#balance) {
+    throw new Error("Insufficient funds!");
+  }
+  this.#balance -= amount;
+}
 
   getBalance() {
     return this.#balance;
